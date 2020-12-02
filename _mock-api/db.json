@@ -1,0 +1,100 @@
+{
+  "cat1": [
+    {
+      "id": 1,
+      "name": "Бизнес-ланч",
+      "slug": "biznes-lanch",
+      "description": "Incidunt quo nemo tempore quo ipsa. Illum esse aliquid voluptate. Omnis quam aut est ducimus in consequatur.",
+      "status": 1,
+      "price": 39.95
+    },
+    {
+      "id": 2,
+      "name": "Бизнес-ланч",
+      "slug": "biznes-lanch",
+      "description": "Incidunt quo nemo tempore quo ipsa. Illum esse aliquid voluptate. Omnis quam aut est ducimus in consequatur. asd asd as das a sdasdasdasda",
+      "status": 1,
+      "price":  39.95
+    },
+    {
+      "id": 3,
+      "name": "Бизнес-ланч",
+      "slug": "biznes-lanch",
+      "description": "Incidunt quo nemo tempore quo ipsa. Illum esse aliquid voluptate. Omnis quam aut est ducimus in consequatur.a. Illum esse aliquid voluptate. Omnis quam aut est ducimus in consequatur.",
+      "status": 1,
+      "price":  39.95
+    },
+    {
+      "id": 4,
+      "name": "Бизнес-ланч",
+      "slug": "biznes-lanch",
+      "description": "Incidunt quo nemo tempore quo ipsa. Illum esse aliquid voluptate. Omnis quam aut e",
+      "status": 1,
+      "price":  39.95
+    },
+    {
+      "id": 5,
+      "name": "Бизнес-ланч",
+      "slug": "biznes-lanch",
+      "description": "Incidunt quo nemo tempore quo ipsa. Illum esse aliquid voluptate. Omnis quam aut est ducimus in consequatur.",
+      "status": 1,
+      "price":  39.95
+    },
+    {
+      "id": 6,
+      "name": "Бизнес-ланч",
+      "slug": "biznes-lanch",
+      "description": "Incidunt quo nemo tempore quo ipsa. Illum esse aliquid voluptate. Omnis quam aut est ducimus in consequatur.",
+      "status": 1,
+      "price":  39.95
+    },
+    {
+      "id": 7,
+      "name": "Бизнес-ланч",
+      "slug": "biznes-lanch",
+      "description": "Incidunt quo nemo tempore quo ipsa. Illum esse aliquid voluptate. Omnis quam aut est ducimus in consequatur.",
+      "status": 1,
+      "price":  39.95
+    },
+    {
+      "id": 8,
+      "name": "Бизнес-ланч",
+      "slug": "biznes-lanch",
+      "description": "Incidunt quo nemo tempore quo ipsa. Illum esse aliquid voluptate. Omnis quam aut est ducimus in consequatur.",
+      "status": 1,
+      "price":  39.95
+    },
+    {
+      "id": 9,
+      "name": "Бизнес-ланч",
+      "slug": "biznes-lanch",
+      "description": "Incidunt quo nemo tempore quo ipsa. Illum esse aliquid voluptate. Omnis quam aut est ducimus in consequatur.",
+      "status": 1,
+      "price":  39.95
+    },
+    {
+      "id": 10,
+      "name": "Бизнес-ланч",
+      "slug": "biznes-lanch",
+      "description": "Incidunt quo nemo tempore quo ipsa. Illum esse aliquid voluptate. Omnis quam aut est ducimus in consequatur.",
+      "status": 1,
+      "price":  39.95
+    },
+    {
+      "id": 11,
+      "name": "Бизнес-ланч",
+      "slug": "biznes-lanch",
+      "description": "Incidunt quo nemo tempore quo ipsa. Illum esse aliquid voluptate. Omnis quam aut est ducimus in consequatur.",
+      "status": 1,
+      "price":  39.95
+    },
+    {
+      "id": 12,
+      "name": "Бизнес-ланч",
+      "slug": "biznes-lanch",
+      "description": "Incidunt quo nemo tempore quo ipsa. Illum esse aliquid voluptate. Omnis quam aut est ducimus in consequatur.",
+      "status": 1,
+      "price":  39.95
+    }
+  ]
+}

@@ -1,0 +1,131 @@
+.as-bold-font {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 700;
+}
+
+.as-medium-font {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  @extend .as-medium-font;
+  font-size: 0.875rem;
+}
+
+small {
+  font-size: 0.75rem;
+}
+
+h1, .h1 {
+  @extend .as-bold-font;
+  font-size: 1.75rem;
+}
+
+h2, .h2 {
+  @extend .as-bold-font;
+  font-size: 1.625rem;
+}
+
+h3, .h3 {
+  @extend .as-bold-font;
+  font-size: 1.5rem;
+}
+
+h4, .h4 {
+  @extend .as-bold-font;
+  font-size: 1.25rem;
+}
+
+h5, .h5 {
+  @extend .as-bold-font;
+  font-size: 1rem;
+}
+
+h6, .h6 {
+  @extend .as-bold-font;
+  font-size: 0.875rem;
+}
+
+.font-like-h1 {
+  font-size: 1.75rem !important;
+}
+
+.font-like-h2 {
+  font-size: 1.625rem !important;
+}
+
+.font-like-h3 {
+  font-size: 1.5rem !important;
+}
+
+.font-like-h4 {
+  font-size: 1.25rem !important;
+}
+
+.font-like-h5 {
+  font-size: 1rem !important;
+}
+
+.font-like-h6 {
+  font-size: 0.875rem !important;
+}
+
+.fe {
+  font-size: 1.25rem;
+  vertical-align: text-bottom;
+}
+
+@include media-breakpoint-down(sm) {
+  h1, .h1 {
+    font-size: 1.5rem;
+  }
+
+  h2, .h2 {
+    font-size: 1.375rem;
+  }
+
+  h3, .h3 {
+    font-size: 1.25rem;
+  }
+
+  h4, .h4 {
+    font-size: 1.125rem;
+  }
+
+  h5, .h5 {
+    font-size: 1rem;
+  }
+
+  h6, .h6 {
+    font-size: 0.875rem;
+  }
+
+  .font-like-h1 {
+    font-size: 1.5rem !important;
+  }
+
+  .font-like-h2 {
+    font-size: 1.375rem !important;
+  }
+
+  .font-like-h3 {
+    font-size: 1.25rem !important;
+  }
+
+  .font-like-h4 {
+    font-size: 1.125rem !important;
+  }
+
+  .font-like-h5 {
+    font-size: 1rem !important;
+  }
+
+  .font-like-h6 {
+    font-size: 0.875rem !important;
+  }
+}

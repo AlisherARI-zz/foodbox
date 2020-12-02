@@ -1,0 +1,88 @@
+::placeholder {
+  color: $gray-500 !important;
+  opacity: 1;
+}
+
+:-ms-input-placeholder {
+  color: $gray-500 !important;
+}
+
+::-ms-input-placeholder {
+  color: $gray-500 !important;
+}
+
+.btn {
+  padding-left: 20px;
+  padding-right: 20px;
+  font-weight: 600;
+  &:focus, .focus {
+    box-shadow: none;
+  }
+}
+
+.nav-link {
+  transition: .1s;
+  font-size: 16px;
+  &:hover {
+    color: $brand !important;
+  }
+}
+.nav-link.active {
+  color: $brand !important;
+}
+
+.carousel-img {
+  height: 330px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: $border-radius;
+}
+
+.lift {
+  transition: box-shadow .25s ease, transform .25s ease;
+  &:hover,&:focus {
+    box-shadow: 0 1rem 2.5rem rgba(18, 38, 63, 0.1), 0 0.5rem 1rem -0.75rem rgba(18, 38, 63, 0.1) !important;
+    transform: translate3d(0, -3px, 0);
+  }
+}
+
+.lift-lg:hover,
+.lift-lg:focus {
+  box-shadow: 0 2rem 5rem rgba(18, 38, 63, 0.1), 0 0.5rem 1rem -0.75rem rgba(18, 38, 63, 0.05) !important;
+  transform: translate3d(0, -5px, 0);
+}
+
+.input-group-text {
+  background-color: #fff;
+}
+
+.text-maxline {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.text-maxline-1 {
+  @extend .text-maxline;
+  line-height: 24px;
+  height: auto;
+  max-height: 26px;
+  -webkit-line-clamp: 1;
+}
+
+.text-maxline-2 {
+  @extend .text-maxline;
+  line-height: 20px;
+  height: auto;
+  max-height: 50px;
+  -webkit-line-clamp: 2;
+}
+
+.text-maxline-3 {
+  @extend .text-maxline;
+  line-height: 20px;
+  height: auto;
+  max-height: 60px;
+  -webkit-line-clamp: 3;
+}
