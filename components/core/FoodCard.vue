@@ -7,7 +7,7 @@
   >
     <div class="d-flex flex-column justify-content-between h-100">
       <div class="mb-3">
-        <span class="d-block h5">{{ food.name }}</span>
+        <span class="d-block h4">{{ food.name }}</span>
         <span :title="food.description">
           {{ food.description }}
         </span>
@@ -17,7 +17,7 @@
         <b-button v-if="foodInCart" disabled type="button" variant="light">
           Добавлено
         </b-button>
-        <b-button v-else variant="brand" @click="add">
+        <b-button v-else variant="primary" @click="add">
           Добавить к заказу
         </b-button>
       </div>

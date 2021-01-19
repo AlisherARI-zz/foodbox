@@ -1,0 +1,62 @@
+.input-icon {
+  position: absolute;
+  z-index: 90;
+  padding: 10px;
+  color: #a6abb0;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-left: 3px;
+}
+
+.form-control-with-icon {
+  padding-left: 35px !important;
+}
+
+.form-control-lg {
+  &.form-control-with-icon {
+    padding-left: 40px !important;
+  }
+}
+
+.as-left-rounded {
+  border-top-left-radius: $border-radius !important;
+  border-bottom-left-radius: $border-radius !important;
+}
+.as-right-rounded {
+  border-top-right-radius: $border-radius !important;
+  border-bottom-right-radius: $border-radius !important;
+}
+
+
+input {
+  border-color: #ccc;
+
+  [type='radio'], [type='checkbox'] {
+    &:focus, &:active {
+      box-shadow: none;
+    }
+  }
+}
+
+.form-control {
+  &:focus, &:active {
+    box-shadow: none;
+    border-color: $primary;
+
+    + .input-group-prepend > .input-group-text {
+      border-color: $primary
+    }
+  }
+  &:disabled {
+    + .input-group-prepend > .input-group-text {
+      background-color: $input-disabled-bg;
+    }
+  }
+}
+
+.custom-control {
+  input[type='checkbox'] {
+    margin-top: -5px;
+  }
+}

@@ -1,0 +1,17 @@
+@include media-breakpoint-down(sm) {
+  .carousel-img {
+    height: 160px !important;
+    border-radius: 0;
+  }
+
+  .btn {
+    min-height: 20px;
+  }
+}
+
+@media (max-width: 350px) {
+  .carousel-img {
+    height: 140px !important;
+    border-radius: 0;
+  }
+}

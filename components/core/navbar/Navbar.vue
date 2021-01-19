@@ -14,33 +14,27 @@
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav>
-          <b-nav-item :to="{ name: 'services' }" active-class="active">
-            <i class="fa fa-utensils mr-1" />
-            Рестораны и кафе
-          </b-nav-item>
-        </b-navbar-nav>
-
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
           <b-button
-            v-if="!loggedIn"
+            v-if="!loggedIn && $route.name === 'index'"
             v-b-toggle.my-order-sidebar
-            variant="brand"
-            class="mr-2"
+            variant="primary"
+            class="mr-3"
           >
-            <i class="fa fa-shopping-bag mr-1" />
+            <i class="fa fa-shopping-bag mr-2" />
             Мой заказ
             <span v-show="orderListCount">({{ orderListCount }})</span>
           </b-button>
-          <b-nav-item
+          <b-button
             v-if="!loggedIn"
             v-b-modal.sign-in-modal
-            href="javascript:;"
+            variant="light"
+            class="d-flex align-items-center"
           >
-            <i class="fa fa-sign-in-alt mr-1" />
+            <i class="fa fa-sign-in-alt mr-2" />
             Войти
-          </b-nav-item>
+          </b-button>
           <b-nav-item-dropdown v-else right>
             <!-- Using 'button-content' slot -->
             <template #button-content> User </template>
@@ -51,7 +45,6 @@
       </b-collapse>
     </div>
     <MyOrderSidebar id="my-order-sidebar" />
-    <SignInModal />
   </b-navbar>
 </template>
 
@@ -61,7 +54,6 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'Navbar',
   components: {
-    SignInModal: () => import('~/components/core/SignInModal'),
     MyOrderSidebar: () => import('./MyOrderSidebar'),
   },
   data: () => ({

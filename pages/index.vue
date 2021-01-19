@@ -1,95 +1,66 @@
 <template>
   <div>
-    <Carousel />
-    <div class="card mb-4">
-      <div class="card-body">
-        <div class="row justify-content-center">
-          <div class="col-auto pr-0">
-            <button
-              class="btn rounded-pill"
-              :class="foodType === 'all' ? 'btn-brand' : 'btn-light'"
-              @click="foodType = 'all'"
-            >
-              Все
-            </button>
+    <div :class="{ container: !$device.isMobileOrTablet }">
+      <Carousel />
+    </div>
+    <div class="container">
+      <div class="row my-4">
+        <div class="col-12">
+          <SearchForm />
+        </div>
+      </div>
+      <div class="mb-5">
+        <div class="row mb-3 align-items-center">
+          <div class="col">
+            <h2 class="mb-0">Каталог</h2>
           </div>
-          <div class="col-auto pr-0">
-            <button
-              class="btn rounded-pill"
-              :class="foodType === 'burgers' ? 'btn-brand' : 'btn-light'"
-              @click="foodType = 'burgers'"
+          <div class="col-auto">
+            <b-button
+              variant="outline-primary"
+              :to="{ name: 'catalog' }"
+              :size="$device.isMobileOrTablet ? 'sm' : 'md'"
             >
-              Бургеры
-            </button>
+              Показать еще
+            </b-button>
           </div>
-          <div class="col-auto pr-0">
-            <button
-              class="btn rounded-pill"
-              :class="foodType === 'sushi' ? 'btn-brand' : 'btn-light'"
-              @click="foodType = 'sushi'"
-            >
-              Суши
-            </button>
-          </div>
-          <div class="col-auto pr-0">
-            <button
-              class="btn rounded-pill"
-              :class="foodType === 'pizza' ? 'btn-brand' : 'btn-light'"
-              @click="foodType = 'pizza'"
-            >
-              Пицца
-            </button>
-          </div>
-          <div class="col-auto pr-0">
-            <button
-              class="btn rounded-pill"
-              :class="foodType === 'deserts' ? 'btn-brand' : 'btn-light'"
-              @click="foodType = 'deserts'"
-            >
-              Десерты
-            </button>
-          </div>
-          <div class="col-auto pr-0">
-            <button
-              class="btn rounded-pill"
-              :class="foodType === 'shashlik' ? 'btn-brand' : 'btn-light'"
-              @click="foodType = 'shashlik'"
-            >
-              Шашлык
-            </button>
-          </div>
-          <div class="col-auto pr-0">
-            <button
-              class="btn rounded-pill"
-              :class="foodType === 'breackfast' ? 'btn-brand' : 'btn-light'"
-              @click="foodType = 'breackfast'"
-            >
-              Завтраки
-            </button>
+        </div>
+        <div class="row">
+          <div
+            v-for="category in homeData.categories"
+            :key="category.id"
+            class="col-12 col-md-6 col-lg-4 mb-5"
+          >
+            <CategoryCard :category="category" />
           </div>
         </div>
       </div>
-    </div>
-    <div class="row mb-4">
-      <div class="col-12">
-        <SearchForm />
-      </div>
-    </div>
-    <div>
-      <h2 class="mb-3">Популярные блюда</h2>
-      <div class="row">
-        <div
-          v-for="(food, index) in foodList"
-          :key="index"
-          class="col-12 col-md-6 col-lg-4 mb-5"
-        >
-          <FoodCard :food="food" />
+
+      <div>
+        <div class="row mb-3 align-items-center">
+          <div class="col">
+            <h2 class="mb-0">Рестораны</h2>
+          </div>
+          <div class="col-auto">
+            <b-button
+              variant="outline-primary"
+              :size="$device.isMobileOrTablet ? 'sm' : 'md'"
+              :to="{ name: 'brands' }"
+            >
+              Показать еще
+            </b-button>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <b-button variant="light" block> Показать еще... </b-button>
+        <div class="row">
+          <div
+            v-for="brand in homeData.brands"
+            :key="brand.id"
+            class="col-12 col-md-6 col-lg-4 mb-5"
+          >
+            <nuxt-link :to="{ name: 'brands-id', params: { id: brand.id } }">
+              <RestaurantCard :restaurant="brand" />
+            </nuxt-link>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -100,15 +71,14 @@ export default {
   name: 'Main',
   components: {
     Carousel: () => import('~/components/home/Carousel'),
-    FoodCard: () => import('~/components/core/FoodCard'),
     SearchForm: () => import('~/components/core/SearchForm'),
+    CategoryCard: () => import('~/components/core/CategoryCard'),
+    RestaurantCard: () => import('~/components/core/RestaurantCard'),
   },
   async asyncData({ app, error }) {
     try {
-      const foodList = await app.$foodApi.getFoodList()
-      return {
-        foodList,
-      }
+      const homeData = (await app.$homeApi.getHomeData()).data
+      return { homeData }
     } catch (e) {}
   },
   data: () => ({

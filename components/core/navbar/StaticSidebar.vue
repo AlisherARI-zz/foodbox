@@ -1,12 +1,5 @@
 <template>
-  <b-sidebar
-    :id="id"
-    title="Мой заказ"
-    backdrop-variant="dark"
-    right
-    backdrop
-    shadow
-  >
+  <div class="base-sidebar bg-light">
     <div
       v-if="!orderList.length"
       class="d-flex justify-content-center align-items-center h-75"
@@ -72,23 +65,20 @@
         <span class="h3">{{ totalPrice + 10 }} с.</span>
       </div>
     </div>
-    <template v-if="orderList.length" #footer>
+    <template v-if="orderList.length">
       <div class="m-2">
         <button class="btn btn-block btn-lg btn-primary">Оформить заказ</button>
       </div>
     </template>
-  </b-sidebar>
+  </div>
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations, mapState } from 'vuex'
 import noData from '~/assets/img/no_data.svg'
 
 export default {
-  name: 'MyOrderSidebar',
-  props: {
-    id: { type: String, default: () => 'default-sidebar' },
-  },
+  name: 'StaticSidebar',
   data: () => ({
     noData,
   }),
@@ -107,3 +97,10 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.base-sidebar {
+  width: 320px;
+  height: 100%;
+}
+</style>

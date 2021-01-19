@@ -12,23 +12,24 @@
 }
 
 .btn {
-  padding-left: 20px;
-  padding-right: 20px;
-  font-weight: 600;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 24px;
+  font-weight: 700;
   &:focus, .focus {
     box-shadow: none;
+  }
+  &.btn-link {
+    &:focus, &:active {
+      text-decoration: none;
+    }
   }
 }
 
 .nav-link {
   transition: .1s;
   font-size: 16px;
-  &:hover {
-    color: $brand !important;
-  }
-}
-.nav-link.active {
-  color: $brand !important;
 }
 
 .carousel-img {
@@ -86,3 +87,8 @@
   max-height: 60px;
   -webkit-line-clamp: 3;
 }
+
+.min-vh-80 {
+  min-height: 80vh !important
+}
+

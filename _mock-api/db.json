@@ -96,5 +96,11 @@
       "status": 1,
       "price":  39.95
     }
-  ]
+  ],
+  "service": {
+    "id": 1,
+    "name": "Самбуса #1",
+    "slug": "sambusa-1",
+    "description": "Minima quae sed ipsam ea itaque pariatur. Aut qui consectetur nulla vitae in molestias laborum. Est velit rerum officiis ratione maiores."
+  }
 }

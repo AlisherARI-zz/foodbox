@@ -80,7 +80,7 @@ dist
 # IDE / Editor
 .idea
 
-# Service worker
+# Brand worker
 sw.*
 
 # macOS

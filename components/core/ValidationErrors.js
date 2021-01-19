@@ -10,10 +10,8 @@ export default {
     const errorTemplate = (error) =>
       h('div', { attrs: { class: 'invalid-feedback' } }, error)
 
-    const renderErrors = errors.length
+    return errors.length
       ? errors.map((error) => errorTemplate(error))
       : h('div')
-
-    return renderErrors
   },
 }

@@ -1,11 +1,11 @@
 .as-bold-font {
-  font-family: 'Montserrat', sans-serif !important;
-  font-weight: 700;
+  font-family: 'Nunito', sans-serif !important;
+  font-weight: 800;
 }
 
 .as-medium-font {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
 }
 
 html {
@@ -13,7 +13,8 @@ html {
 }
 
 body {
-  @extend .as-medium-font;
+  font-family: 'Nunito', sans-serif !important;
+  font-weight: 400;
   font-size: 0.875rem;
 }
 

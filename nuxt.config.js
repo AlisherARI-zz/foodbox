@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 export default {
   /*
    ** Nuxt rendering mode
@@ -30,6 +32,22 @@ export default {
    ** Global CSS
    */
   css: ['~assets/styles/app.scss'],
+  module: {
+    rules: [
+      {
+        test: /\.s[ac]ss$/i,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+    ],
+  },
+
+  loading: {
+    color: '#ff7300',
+    background: '#ff7300',
+    height: '4px',
+    boxShadow: '0 2px 4px #ccc',
+  },
+
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
@@ -50,6 +68,7 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
+    '@nuxtjs/dotenv',
   ],
   /*
    ** Nuxt.js modules
@@ -69,7 +88,31 @@ export default {
         expire: 24,
       },
     ],
+    '@nuxtjs/auth',
+    '@nuxtjs/device',
   ],
+
+  auth: {
+    redirect: false,
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: '/auth/login',
+            method: 'post',
+            propertyName: 'access_token',
+          },
+          logout: { url: '/auth/logout', method: 'post' },
+          user: {
+            url: '/auth/me',
+            method: 'get',
+            propertyName: false,
+          },
+        },
+        autoFetchUser: true,
+      },
+    },
+  },
 
   bootstrapVue: {
     bootstrapCSS: false,
@@ -85,7 +128,15 @@ export default {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    headers: {
+      common: {
+        Accept: 'application/json',
+        'Content-type': 'application/json',
+      },
+      debug: process.env.NODE_ENV === 'development',
+    },
+  },
   /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/

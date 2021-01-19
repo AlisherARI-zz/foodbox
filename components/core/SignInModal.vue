@@ -9,42 +9,61 @@
     <span class="h4 d-block mb-3">Вход</span>
     <form id="sign-in-form" @submit.prevent="login">
       <div class="form-group">
-        <label for="sign-in-email">Эл.Почта</label>
+        <label for="sign-in-phone">Тел.номер</label>
         <div class="input-group is-invalid">
-          <div class="input-group-prepend">
-            <div class="input-group-text">
-              <i class="fa fa-envelope"></i>
-            </div>
-          </div>
-          <input
-            id="sign-in-email"
-            v-model="$v.user.email.$model"
-            type="email"
-            class="form-control"
-            :class="{ 'is-invalid': emailErrors.length }"
-            placeholder="почта@mail.ru"
+          <span class="input-icon">
+            <span class="font-like-h5 mb-n1">
+              <i class="fa fa-phone"></i>
+            </span>
+          </span>
+          <the-mask
+            id="sign-in-phone"
+            v-model="$v.user.phone.$model"
+            type="tel"
+            class="form-control form-control-lg form-control-with-icon"
+            :class="{ 'is-invalid': submitted && phoneErrors.length }"
+            mask="## ### ## ##"
+            :masked="false"
+            placeholder="99 999 99 99"
           />
         </div>
-        <ValidationErrors :errors="emailErrors" />
+        <ValidationErrors
+          v-if="submitted && phoneErrors.length"
+          :errors="phoneErrors"
+        />
       </div>
       <div class="form-group">
         <label for="sign-in-password">Пароль</label>
         <div class="input-group is-invalid">
-          <div class="input-group-prepend">
-            <div class="input-group-text">
+          <span class="input-icon">
+            <span class="font-like-h5 mb-n1">
               <i class="fa fa-lock"></i>
-            </div>
-          </div>
+            </span>
+          </span>
           <input
             id="sign-in-password"
             v-model="$v.user.password.$model"
-            type="password"
-            class="form-control"
-            :class="{ 'is-invalid': passwordErrors.length }"
+            :type="passwordType"
+            class="form-control form-control-lg form-control-with-icon"
+            :class="{ 'is-invalid': submitted && passwordErrors.length }"
             placeholder="******"
           />
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span
+                style="cursor: pointer"
+                :class="`fa ${
+                  passwordType === 'password' ? 'fa-eye' : 'fa-eye-slash'
+                }`"
+                @click="changePasswordType"
+              ></span>
+            </div>
+          </div>
         </div>
-        <ValidationErrors :errors="passwordErrors" />
+        <ValidationErrors
+          v-if="submitted && passwordErrors.length"
+          :errors="passwordErrors"
+        />
       </div>
       <div class="form-group">
         <b-form-checkbox v-model="user.remember_me">
@@ -52,19 +71,23 @@
         </b-form-checkbox>
       </div>
       <div class="form-group">
-        <div class="row">
-          <div class="col-auto pr-0">
-            <button class="btn btn-brand" form="sign-in-form">Войти</button>
-          </div>
-          <div class="col-auto">
-            <nuxt-link
-              :to="{ name: 'sign-up' }"
-              class="btn btn-link"
-              tag="button"
-            >
-              Регистрация
-            </nuxt-link>
-          </div>
+        <div class="d-flex align-items-center">
+          <button
+            class="btn btn-primary mr-2"
+            form="sign-in-form"
+            :disabled="loading"
+          >
+            <b-spinner v-show="loading" small variant="light" class="mr-2" />
+            Войти
+          </button>
+          <nuxt-link
+            :to="{ name: 'sign-up' }"
+            class="btn btn-link"
+            tag="button"
+            :disabled="loading"
+          >
+            Регистрация
+          </nuxt-link>
         </div>
       </div>
     </form>
@@ -72,56 +95,62 @@
 </template>
 
 <script>
-import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
+import { required, minLength, maxLength } from 'vuelidate/lib/validators'
+import { TheMask } from 'vue-the-mask'
+import { generateErrors } from '~/assets/utils/generators'
 
 export default {
   name: 'SignInModal',
+  components: { TheMask },
   data: () => ({
     user: {
-      email: '',
+      phone: '',
       password: '',
       remember_me: false,
     },
     submitted: false,
-    emailError: [],
-    passwordError: [],
+    passwordType: 'password',
+    errors: {
+      phone: [],
+      password: [],
+    },
+    loading: false,
   }),
   validations: {
     user: {
-      email: {
+      phone: {
         required,
-        email,
+        minLength: minLength(9),
       },
       password: {
         required,
         minLength: minLength(6),
         maxLength: maxLength(20),
       },
+      remember_me: {},
     },
   },
   computed: {
-    emailErrors() {
-      const errors = [...this.emailError]
-      if (this.submitted && !this.$v.user.email.required) {
-        errors.push('Почта обязательна для заполнения')
-      }
-      if (this.submitted && !this.$v.user.email.email) {
-        errors.push('Неверный формат почты')
-      }
-      return errors
+    phoneErrors() {
+      return generateErrors(
+        'тел.номер',
+        {
+          required: this.$v.user.phone.required,
+          minLength: { value: this.$v.user.phone.minLength, length: 9 },
+        },
+        this.errors.phone
+      )
     },
     passwordErrors() {
-      const errors = [...this.passwordError]
-      if (this.submitted && !this.$v.user.password.required) {
-        errors.push('Пароль обязателен для заполнения')
-      }
-      if (this.submitted && !this.$v.user.password.minLength) {
-        errors.push('Пароль должен содержать не менее 6 символов')
-      }
-      if (this.submitted && !this.$v.user.password.maxLength) {
-        errors.push('Пароль должен содержать не более 20 символов')
-      }
-      return errors
+      return generateErrors(
+        'пароль',
+        {
+          required: this.$v.user.password.required,
+          minLength: { value: this.$v.user.password.minLength, length: 6 },
+          maxLength: { value: this.$v.user.password.maxLength, length: 20 },
+        },
+        this.errors.password
+      )
     },
   },
   watch: {
@@ -135,11 +164,27 @@ export default {
       if (this.$v.user.$invalid) {
         this.$v.user.$touch()
       }
+      this.loading = true
+      const data = { ...this.user }
+      data.phone = `998${data.phone}`
+      this.$auth
+        .loginWith('local', { data })
+        .then(() => {
+          this.$bvModal.hide('sign-in-modal')
+        })
+        .finally(() => (this.loading = false))
     },
     clearForm() {
-      this.user.email = ''
+      this.user.phone = ''
       this.user.password = ''
       this.submitted = false
+    },
+    changePasswordType() {
+      if (this.passwordType === 'password') {
+        this.passwordType = 'text'
+      } else {
+        this.passwordType = 'password'
+      }
     },
   },
 }

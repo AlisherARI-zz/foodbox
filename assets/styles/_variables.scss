@@ -1,16 +1,12 @@
-$brand: #d6470d !default;
+$primary: #ff7300 !default;
 $light: #f3f3f3 !default;
-$link-color: $brand !default;
 $success: #0ec645 !default;
 $danger: #e10014 !default;
 
-$border-radius: .15rem;
-$border-radius-sm: .15rem;
-$border-radius-lg: .15rem;
-
-$theme-colors: (
-  "brand": $brand,
-);
+$border-radius: .24rem;
+$border-radius-sm: .24rem;
+$border-radius-lg: .24rem;
+$border-color: #eeeeee !default;
 
 $container-max-widths: (
   md: 880px,
